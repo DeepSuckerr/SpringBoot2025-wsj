@@ -2,6 +2,7 @@ package com.wsj.springboot2025_wsj.service;
 
 import com.wsj.springboot2025_wsj.commons.Result;
 import com.wsj.springboot2025_wsj.pojo.Order;
+import org.apache.ibatis.annotations.Param;
 
 public interface OrderService {
 //业务层是被控制层调用的
@@ -15,6 +16,9 @@ public interface OrderService {
     Result findAllOrdersService();
 
     Result updateOrderByIdService(Integer id, String orderName);
+
+    Result findOrdersByNameService(String orderName);
+
 
 
 

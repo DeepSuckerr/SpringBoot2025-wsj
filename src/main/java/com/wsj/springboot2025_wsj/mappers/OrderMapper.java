@@ -1,13 +1,16 @@
 package com.wsj.springboot2025_wsj.mappers;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wsj.springboot2025_wsj.pojo.Order;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 
 @Mapper
-public interface OrderMapper {
+public interface OrderMapper extends BaseMapper<Order> {
 
     //添加订单数据
     int addOrder(Order order);
@@ -16,10 +19,8 @@ public interface OrderMapper {
 
     Order findOrderByIdName(Integer id ,String orderName);
 
-    List<Order> findAllOrders();
-
     int  updateOrderById(Integer id, String orderName);
 
-
+    List<Order> findOrderByLike(String orderName);
 
 }

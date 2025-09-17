@@ -44,7 +44,10 @@ public class OrderController {
         return result;
     }
 
-
-
+    @GetMapping("/findOrdersByName")
+    public Result findOrdersByName(String orderName){
+        Result result = orderService.findOrdersByNameService(orderName);
+        return result;
+    }
 
 }

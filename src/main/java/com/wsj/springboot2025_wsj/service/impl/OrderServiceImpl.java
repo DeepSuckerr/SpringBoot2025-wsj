@@ -67,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Result findAllOrdersService() {
-        List<Order> list = orderMapper.findAllOrders();
+        List<Order> list = orderMapper.selectList(null);
         if(list != null && !list.isEmpty()){
             return new Result(200,"查询成功",list);
         }else {
@@ -89,5 +89,19 @@ public class OrderServiceImpl implements OrderService {
             return new Result(203,"修改失败",null);
         }
         return new Result(200,"修改成功",orderName);
+    }
+
+    @Override
+    public Result findOrdersByNameService(String orderName) {
+        if(orderName == null || orderName.isEmpty()){
+            // 如果orderName为空，则查询所有订单
+            return new Result(201,"订单名称不能为空",null);
+        }
+        List<Order> orderByLike = orderMapper.findOrderByLike(orderName);
+        if (orderByLike != null && !orderByLike.isEmpty()) {
+            return new Result(200,"查询成功",orderByLike);
+        }else {
+            return new Result(203,"查询失败,未找到数据",null);
+        }
     }
 }
