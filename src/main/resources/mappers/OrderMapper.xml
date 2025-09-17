@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <!--
+        namespace:命名空间  作为多个mapper文件的唯一标识
+        -->
+<mapper namespace="com.wsj.springboot2025_wsj.mappers.OrderMapper">
+<insert id="addOrder" parameterType="com.wsj.springboot2025_wsj.pojo.Order">
+    insert into tb_order (id,order_code,order_name,price,is_pay,address)
+        values (null,#{orderCode},#{orderName},#{price},#{isPay},#{address});
+</insert>
+
+    <select id="findOrderById" parameterType="java.lang.Integer" resultType="com.wsj.springboot2025_wsj.pojo.Order">
+        select * from tb_order where id = #{id}
+    </select>
+
+
+    <select id="findOrderByIdName" resultType="com.wsj.springboot2025_wsj.pojo.Order">
+
+        select * from tb_order where id = #{id} and order_name = #{orderName}
+
+    </select>
+
+    <select id="findAllOrders" resultType="com.wsj.springboot2025_wsj.pojo.Order">
+
+        select * from tb_order
+
+
+    </select>
+    <select id="findCountOrders" resultType="java.lang.Integer">
+
+        select count(*) from tb_order
+
+    </select>
+    <select id="findOrderByLike" parameterType="java.lang.String" resultType="com.wsj.springboot2025_wsj.pojo.Order">
+
+        select * from tb_order where order_name like concat('%',#{orderName},'%')
+
+    </select>
+
+    <update id="updateOrder">
+       update tb_order set order_code = #{orderCode}, order_name = #{orderName}, price = #{price}, is_pay = #{isPay}, address = #{address} where id = #{id}
+    </update>
+    
+    <update id="updateOrderSelective">
+        update tb_order
+        <set>
+            <if test="orderCode != null and orderCode != ''">
+                order_code = #{orderCode},
+            </if>
+            <if test="orderName != null and orderName != ''">
+                order_name = #{orderName},
+            </if>
+            <if test="price != null and price != ''">
+                price = #{price},
+            </if>
+            <if test="isPay != null">
+                is_pay = #{isPay},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateOrderById">
+
+        update tb_order set order_name = #{orderName} where id = #{id}
+
+    </update>
+
+    <delete id="deleteOrderById">
+        delete from tb_order where id = #{id}
+    </delete>
+
+    <delete id="deleteOrderByIdName" >
+    delete from tb_order where id = #{id} and order_name = #{orderName}
+    </delete>
+
+    <select id="find" resultType="com.wsj.springboot2025_wsj.pojo.Order">
+        select * from tb_order where id in
+        <foreach collection="list" open="(" close=")" separator="," item="i">
+            #{i}
+        </foreach>
+    </select>
+
+
+    
+
+</mapper>

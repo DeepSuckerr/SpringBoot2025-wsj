@@ -1,0 +1,50 @@
+package com.wsj.springboot2025_wsj.controller;
+
+
+import com.wsj.springboot2025_wsj.commons.Result;
+import com.wsj.springboot2025_wsj.pojo.Order;
+import com.wsj.springboot2025_wsj.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class OrderController {
+
+    @Autowired
+    OrderService orderService;
+
+    @PostMapping("/addOrder")
+    public Result addOrder(@RequestBody Order order){
+        Result result = orderService.addOrderService(order);
+        return result;
+
+    }
+
+    @GetMapping("/deleteOrderById/{id}")
+    public Result deleteOrderById(@PathVariable("id") Integer id){
+        Result result = orderService.deleteOrderByIdService(id);
+        return result;
+    }
+
+    @GetMapping("/findOrderByIdName")
+    public Result findOrderByIdName(Integer id,String orderName){
+        Result result = orderService.findOrderByIdNameService(id,orderName);
+        return result;
+    }
+
+    @GetMapping("/findAllOrders")
+    public Result findAllOrders(){
+        Result result = orderService.findAllOrdersService();
+        return result;
+    }
+
+    @GetMapping("/updateOrderById")
+    public Result updateOrderById(Integer id, String orderName){
+        Result result = orderService.updateOrderByIdService(id, orderName);
+        return result;
+    }
+
+
+
+
+}

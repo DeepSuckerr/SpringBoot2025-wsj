@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gh_2022?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com/wsj/springboot2025_wsj/pojo
+  mapper-locations: classpath:mappers/*.xml
+
+
+
+
+order:
+  id: 10
+  orderCode: 10086
+  orderName: 假功夫
+  price: 22
+  isPay: 0
+  address: 北区0
+
+
+stu:
+  name: "lisi"
+  pwd: 123
+  id: 2
+
+
+
+
