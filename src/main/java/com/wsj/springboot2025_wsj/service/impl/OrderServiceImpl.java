@@ -1,5 +1,8 @@
 package com.wsj.springboot2025_wsj.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wsj.springboot2025_wsj.commons.Result;
 import com.wsj.springboot2025_wsj.mappers.OrderMapper;
 import com.wsj.springboot2025_wsj.pojo.Order;
@@ -7,8 +10,8 @@ import com.wsj.springboot2025_wsj.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -103,5 +106,55 @@ public class OrderServiceImpl implements OrderService {
         }else {
             return new Result(203,"查询失败,未找到数据",null);
         }
+    }
+
+    @Override
+    public boolean saveBatch(Collection<Order> entityList, int batchSize) {
+        return false;
+    }
+
+    @Override
+    public boolean saveOrUpdateBatch(Collection<Order> entityList, int batchSize) {
+        return false;
+    }
+
+    @Override
+    public boolean updateBatchById(Collection<Order> entityList, int batchSize) {
+        return false;
+    }
+
+    @Override
+    public boolean saveOrUpdate(Order entity) {
+        return false;
+    }
+
+    @Override
+    public Order getOne(Wrapper<Order> queryWrapper, boolean throwEx) {
+        return null;
+    }
+
+    @Override
+    public Optional<Order> getOneOpt(Wrapper<Order> queryWrapper, boolean throwEx) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Map<String, Object> getMap(Wrapper<Order> queryWrapper) {
+        return Map.of();
+    }
+
+    @Override
+    public <V> V getObj(Wrapper<Order> queryWrapper, Function<? super Object, V> mapper) {
+        return null;
+    }
+
+    @Override
+    public BaseMapper<Order> getBaseMapper() {
+        return null;
+    }
+
+    @Override
+    public Class<Order> getEntityClass() {
+        return null;
     }
 }
