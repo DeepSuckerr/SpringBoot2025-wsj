@@ -1,6 +1,7 @@
 package com.wsj.springboot2025_wsj.controller;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wsj.springboot2025_wsj.commons.Result;
 import com.wsj.springboot2025_wsj.pojo.Order;
 import com.wsj.springboot2025_wsj.service.OrderService;
@@ -8,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class OrderController {
+@CrossOrigin
+public class OrderController{
 
     @Autowired
     OrderService orderService;
@@ -33,12 +35,13 @@ public class OrderController {
     }
 
     @GetMapping("/findAllOrders")
+    @CrossOrigin
     public Result findAllOrders(){
         Result result = orderService.findAllOrdersService();
         return result;
     }
 
-    @GetMapping("/updateOrderById")
+    @PostMapping("/updateOrderById")
     public Result updateOrderById(Integer id, String orderName){
         Result result = orderService.updateOrderByIdService(id, orderName);
         return result;
@@ -49,5 +52,19 @@ public class OrderController {
         Result result = orderService.findOrdersByNameService(orderName);
         return result;
     }
+
+    @GetMapping("/findOrderById/{id}")
+    public Result findAllOrdersByUserId(@PathVariable("id") Integer id){
+        Result result = orderService.findOrdersByIdService(id);
+        return result;
+    }
+
+    @PostMapping("/updateOrder")
+    public Result updateOrder(@RequestBody Order order){
+        Result result = orderService.updateOrder(order);
+        return result;
+    }
+
+
 
 }

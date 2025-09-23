@@ -8,12 +8,14 @@ import com.wsj.springboot2025_wsj.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.sql.Wrapper;
 import java.util.List;
 
 
 @Service
+@CrossOrigin
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -81,9 +83,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CrossOrigin
     public Result findAllUser() {
         List<User> users = userMapper.selectList(null);
-        if(users!=null&&users.size()>0){
+        if(users!=null&& !users.isEmpty()){
             return new Result(200,"查询成功",users);
         }else {
             return new Result(201,"查询失败",null);

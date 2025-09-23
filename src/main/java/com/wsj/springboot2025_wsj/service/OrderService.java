@@ -20,6 +20,10 @@ public interface OrderService extends IService<Order> {
 
     Result findOrdersByNameService(String orderName);
 
+    Result findOrdersByIdService(Integer id);
+
+    Result updateOrder(Order order);
+
 
 
 

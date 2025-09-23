@@ -28,7 +28,25 @@ namespace:命名空间  作为多个mapper文件的唯一标识
     </select>
 
     <update id="updateOrder">
-       update tb_order set order_code = #{orderCode}, order_name = #{orderName}, price = #{price}, is_pay = #{isPay}, address = #{address} where id = #{id}
+        update tb_order
+        <set>
+            <if test="orderCode != null and orderCode != ''">
+                order_code = #{orderCode},
+            </if>
+            <if test="orderName != null and orderName != ''">
+                order_name = #{orderName},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="isPay != null">
+                is_pay = #{isPay},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+        </set>
+        where id = #{id}
     </update>
 
     <update id="updateOrderSelective">
@@ -73,6 +91,9 @@ namespace:命名空间  作为多个mapper文件的唯一标识
 
     <select id="findOrderByLike" resultType="com.wsj.springboot2025_wsj.pojo.Order">
         select * from tb_order where order_name like concat('%',#{orderName},'%')
+    </select>
+    <select id="selectByIds" parameterType="java.lang.Integer" resultType="com.wsj.springboot2025_wsj.pojo.Order">
+        select * from tb_order where id = #{id}
     </select>
 
 

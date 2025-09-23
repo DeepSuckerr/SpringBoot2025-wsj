@@ -17,6 +17,8 @@ import java.util.function.Function;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderMapper orderMapper;
+    @Autowired
+    private Order order;
 
 
     @Override
@@ -105,6 +107,32 @@ public class OrderServiceImpl implements OrderService {
             return new Result(200,"查询成功",orderByLike);
         }else {
             return new Result(203,"查询失败,未找到数据",null);
+        }
+    }
+
+    @Override
+    public Result findOrdersByIdService(Integer id) {
+        Order order = orderMapper.selectByIds(id);
+        if (id==null) {
+            return new Result(201,"没有指定可以返回的数据",null);
+        }else {
+            return new Result(200,"查询成功",order);
+        }
+    }
+
+    @Override
+    public Result updateOrder(Order order) {
+        if(order.getId()==null){
+            return new Result(201,"没有指定修改的数据",null);
+        }
+        if(order.getOrderName() == null || order.getOrderName().isEmpty()){
+            return new Result(202,"订单编号不能为空",null);
+        }
+        int result = orderMapper.updateOrder(order);
+        if(result != 1){
+            return new Result(203,"修改失败",null);
+        }else {
+            return new Result(200,"修改成功",null);
         }
     }
 

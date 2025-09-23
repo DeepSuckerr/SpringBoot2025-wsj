@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wsj.springboot2025_wsj.pojo.Order;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,6 +22,7 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     List<Order> findOrderByLike(String orderName);
 
+    Order selectByIds(Integer id);
 
-
+    int updateOrder(Order order);
 }
