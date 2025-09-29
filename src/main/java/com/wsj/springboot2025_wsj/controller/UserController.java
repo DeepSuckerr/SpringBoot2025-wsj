@@ -16,6 +16,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/addUser")
+    @CrossOrigin
     public Result addUser(@RequestBody User user){
         Result result = userService.addUser(user);
         return result;
@@ -59,5 +60,12 @@ public class UserController {
         return result;
     }
 
+    @PostMapping("/doLogin")
+    @CrossOrigin
+    public Result doLogin(@RequestBody User user){
+        Result result = userService.doLogin(user);
+        return result;
+    }
 
-}
+
+ }

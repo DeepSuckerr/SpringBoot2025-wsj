@@ -1,2 +1,10 @@
-INSERT INTO `tb_order` (`id`, `order_code`, `order_name`, `price`, `is_pay`, `address`) VALUES (1, '1001', '华莱士', '11', 1, '松山湖');
-INSERT INTO `tb_order` (`id`, `order_code`, `order_name`, `price`, `is_pay`, `address`) VALUES (2, '0000', '河粉', '11', 1, '松山湖');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (1, '1', '1', '1', 1, '1');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (2, '444', '444', '44.0', 1, '2');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (3, '444', '444', '44', 1, '2');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (4, '4', '4', '4', 1, '2');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (5, '5', '5', '5', 0, '5');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (8, '', '', null, 0, '');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (9, '', '', null, 0, '');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (10, 'e', 'e', '0.0', 1, 'e');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (11, 'www', '猪脚饭', '11.0', 1, '弘扬公关');
+INSERT INTO gh_2022.tb_order (id, order_code, order_name, price, is_pay, address) VALUES (17, 'www', '猪脚饭', '2.0', 1, '弘扬公关');

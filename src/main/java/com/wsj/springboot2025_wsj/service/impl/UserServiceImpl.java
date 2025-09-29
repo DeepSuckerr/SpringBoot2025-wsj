@@ -112,5 +112,30 @@ public class UserServiceImpl implements UserService {
         return new Result(200,"查询成功",users);
     }
 
+    @Override
+    public Result doLogin(User user) {
+        if (user == null){
+            return new Result(201,"登录信息不能为空",null);
+
+        }if ("".equals(user.getUserName()) || null == user.getUserName()) {
+            return new Result(202,"登录名不能为空",null);
+
+        }if ("".equals(user.getPassword()) || null == user.getPassword()) {
+            return new Result(203,"登录密码不能为空",null);
+        }
+
+        QueryWrapper<User> wrapper = new QueryWrapper<User>().eq("user_name", user.getUserName()).eq("password", user.getPassword());
+        User user1 = userMapper.selectOne(wrapper);
+
+        if (user1 == null){
+            return new Result(204,"请检查登录信息",null);
+        }
+
+        if (user1.getUserName().equals(user.getUserName()) && user1.getPassword().equals(user.getPassword())) {
+            return new Result(200,"登录成功",null);
+        }
+        return new Result(205,"请检查账号和密码",null);
+    }
+
 
 }

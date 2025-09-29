@@ -1,11 +1,12 @@
 package com.wsj.springboot2025_wsj.service;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.wsj.springboot2025_wsj.commons.Result;
 import com.wsj.springboot2025_wsj.pojo.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService  {
 
     Result addUser(User user);
 
@@ -18,6 +19,10 @@ public interface UserService {
     Result deleteUserById(Integer id);
 
     Result findUsers(List<Integer> ids);
+
+    Result doLogin(User user);
+
+
 
 
 }
