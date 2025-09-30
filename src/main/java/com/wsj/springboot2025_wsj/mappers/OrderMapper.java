@@ -25,4 +25,6 @@ public interface OrderMapper extends BaseMapper<Order> {
     Order selectByIds(Integer id);
 
     int updateOrder(Order order);
+
+
 }

@@ -65,6 +65,13 @@ public class OrderController{
         return result;
     }
 
+    @GetMapping("/findOrderByIsPay")
+    public Result findOrderByIsPay(Integer isPay){
+        Result result = orderService.findOrderByIsPay(isPay);
+        System.out.println(isPay);
+        return result;
+    }
+
 
 
 }

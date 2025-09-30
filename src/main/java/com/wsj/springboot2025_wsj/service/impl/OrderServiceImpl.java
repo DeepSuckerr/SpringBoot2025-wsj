@@ -1,11 +1,13 @@
 package com.wsj.springboot2025_wsj.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wsj.springboot2025_wsj.commons.Result;
 import com.wsj.springboot2025_wsj.mappers.OrderMapper;
 import com.wsj.springboot2025_wsj.pojo.Order;
+import com.wsj.springboot2025_wsj.pojo.User;
 import com.wsj.springboot2025_wsj.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -133,6 +135,20 @@ public class OrderServiceImpl implements OrderService {
             return new Result(203,"修改失败",null);
         }else {
             return new Result(200,"修改成功",null);
+        }
+    }
+
+    @Override
+    public Result findOrderByIsPay(Integer isPay) {
+        if(isPay==null){
+            return new Result(201,"无法获取订单支付状态",null);
+        }
+        QueryWrapper<Order> wrapper =  new QueryWrapper<Order>().eq("is_pay",isPay);
+        List<Order> order1 = orderMapper.selectList(wrapper);
+        if(order1 != null){
+            return new Result(200,"查询成功",order1);
+        }else{
+            return new Result(201,"查询失败",null);
         }
     }
 

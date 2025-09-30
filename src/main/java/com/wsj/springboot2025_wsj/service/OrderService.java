@@ -24,6 +24,8 @@ public interface OrderService extends IService<Order> {
 
     Result updateOrder(Order order);
 
+    Result findOrderByIsPay(Integer isPay);
+
 
 
 
