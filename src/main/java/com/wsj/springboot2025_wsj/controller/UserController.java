@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/addUser")
+    @PostMapping("/addUser")
     @CrossOrigin
     public Result addUser(@RequestBody User user){
         Result result = userService.addUser(user);

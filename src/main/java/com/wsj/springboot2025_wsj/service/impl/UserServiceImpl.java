@@ -37,6 +37,12 @@ public class UserServiceImpl implements UserService {
             return new Result(203,"密码不能为空",null);
 
         }
+        // 只检查用户名是否已存在
+        QueryWrapper<User> wrapper = new QueryWrapper<User>().eq("user_name", user.getUserName());
+        User user1 = userMapper.selectOne(wrapper);
+        if(user1 != null){
+            return new Result(205,"该用户名已存在",null);
+        }
 
         int row = userMapper.insert(user);
         if(row>0){
@@ -107,6 +113,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CrossOrigin
     public Result findUsers(List<Integer> ids) {
         List<User> users = userMapper.findUsers(ids);
         return new Result(200,"查询成功",users);
